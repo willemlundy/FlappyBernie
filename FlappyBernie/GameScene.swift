@@ -102,8 +102,7 @@ class GameScene: SKScene {
         
         // Bottom Obstacle
         let bottomObstacle = createObstacle()
-        // let startX = size.width + bottomObstacle.size.width/2
-        let startX = size.width/2
+        let startX = size.width + bottomObstacle.size.width/2
         
         let bottomObstacleMin = (playableStart - bottomObstacle.size.height/2) + playableHeight * bottomObstacleMinFraction
         let bottomObstacleMax = (playableStart - bottomObstacle.size.height/2) + playableHeight * bottomObstacleMaxFraction
@@ -125,6 +124,17 @@ class GameScene: SKScene {
         topObstacle.zRotation = CGFloat(180).degreesToRadians()
         topObstacle.position = CGPoint(x: startX, y: bottomObstacle.position.y + bottomObstacle.size.height/2 + topObstacle.size.height/2 + player.spriteComponent.node.size.height * gapMultiplier)
         worldNode.addChild(topObstacle)
+        
+        let moveX = size.width + topObstacle.size.width
+        let moveDurration = moveX / groundSpeed
+        
+        let sequence = SKAction.sequence([
+        SKAction.moveByX(-moveX, y: 0, duration: NSTimeInterval(moveDurration)),
+        SKAction.removeFromParent()
+        ])
+        
+        topObstacle.runAction(sequence)
+        bottomObstacle.runAction(sequence)
         
     }
     
