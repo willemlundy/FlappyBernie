@@ -11,6 +11,7 @@ import SpriteKit
 enum Layer:CGFloat {
     case Background
     case Foreground
+    case Player
 }
 
 class GameScene: SKScene {
@@ -26,12 +27,15 @@ class GameScene: SKScene {
     var deltaTime: NSTimeInterval = 0
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
+    let player = Player(imageName: "Bird0")
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
         addChild(worldNode)
         setupBackground()
         setupForeground()
+        setupPlayer()
 
     }
     
@@ -64,6 +68,15 @@ class GameScene: SKScene {
             worldNode.addChild(foreground)
         }
         
+    }
+    
+    func setupPlayer() {
+        let playerNode = player.spriteComponent.node
+        playerNode.position = CGPoint(x: size.width * 0.2, y: playableHeight * 0.4 + playableStart)
+        
+        playerNode.zPosition = Layer.Player.rawValue
+        
+        worldNode.addChild(playerNode)
     }
     
     

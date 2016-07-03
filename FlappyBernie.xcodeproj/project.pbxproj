@@ -36,6 +36,8 @@
 		89E918EA1D2497DA002EACA7 /* hitGround.wav in Resources */ = {isa = PBXBuildFile; fileRef = 89E918D31D2497DA002EACA7 /* hitGround.wav */; };
 		89E918EB1D2497DA002EACA7 /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 89E918D41D2497DA002EACA7 /* pop.wav */; };
 		89E918EC1D2497DA002EACA7 /* whack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 89E918D51D2497DA002EACA7 /* whack.wav */; };
+		89E919121D29C08A002EACA7 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919111D29C08A002EACA7 /* PlayerEntity.swift */; };
+		89E919141D29C138002EACA7 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919131D29C138002EACA7 /* SpriteComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		89E918D31D2497DA002EACA7 /* hitGround.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitGround.wav; sourceTree = "<group>"; };
 		89E918D41D2497DA002EACA7 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
 		89E918D51D2497DA002EACA7 /* whack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whack.wav; sourceTree = "<group>"; };
+		89E919111D29C08A002EACA7 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		89E919131D29C138002EACA7 /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 		89AC24C61D232D7F00337B9D /* FlappyBernie */ = {
 			isa = PBXGroup;
 			children = (
+				89E919101D29BF90002EACA7 /* Entities */,
+				89E9190F1D29BF85002EACA7 /* Components */,
 				89E918B91D2497DA002EACA7 /* BernieResources */,
 				89AC24C71D232D7F00337B9D /* AppDelegate.swift */,
 				89AC24CB1D232D7F00337B9D /* GameScene.swift */,
@@ -182,6 +188,22 @@
 			children = (
 			);
 			path = .wdmc;
+			sourceTree = "<group>";
+		};
+		89E9190F1D29BF85002EACA7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				89E919131D29C138002EACA7 /* SpriteComponent.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		89E919101D29BF90002EACA7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				89E919111D29C08A002EACA7 /* PlayerEntity.swift */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,7 +296,9 @@
 				89E918DF1D2497DA002EACA7 /* SKAction+SpecialEffects.swift in Sources */,
 				89E918DC1D2497DA002EACA7 /* CGVector+Extensions.swift in Sources */,
 				89E918DE1D2497DA002EACA7 /* SKAction+Extensions.swift in Sources */,
+				89E919121D29C08A002EACA7 /* PlayerEntity.swift in Sources */,
 				89E918E01D2497DA002EACA7 /* SKColor+Extensions.swift in Sources */,
+				89E919141D29C138002EACA7 /* SpriteComponent.swift in Sources */,
 				89AC24CE1D232D7F00337B9D /* GameViewController.swift in Sources */,
 				89E918DD1D2497DA002EACA7 /* Int+Extensions.swift in Sources */,
 				89E918E11D2497DA002EACA7 /* SKNode+Extensions.swift in Sources */,
