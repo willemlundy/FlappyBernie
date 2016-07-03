@@ -7,9 +7,11 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 enum Layer:CGFloat {
     case Background
+    case Obstacle
     case Foreground
     case Player
 }
@@ -29,6 +31,11 @@ class GameScene: SKScene {
     
     let player = Player(imageName: "Bird0")
     
+    let bottomObstacleMinFraction: CGFloat = 0.1
+    let bottomObstacleMaxFraction: CGFloat = 0.6
+    
+    let gapMultiplier: CGFloat = 3.5
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
@@ -36,6 +43,8 @@ class GameScene: SKScene {
         setupBackground()
         setupForeground()
         setupPlayer()
+        
+        spawnObstacle()
 
     }
     
@@ -81,6 +90,43 @@ class GameScene: SKScene {
         player.movementComponent.playableStart = playableStart
     }
     
+    func createObstacle() -> SKSpriteNode {
+        let obstacle = Obstacle(imageName: "Cactus")
+        let obstacleNode = obstacle.spriteComponent.node
+        obstacleNode.zPosition = Layer.Obstacle.rawValue
+        
+        return obstacle.spriteComponent.node
+    }
+    
+    func spawnObstacle() {
+        
+        // Bottom Obstacle
+        let bottomObstacle = createObstacle()
+        // let startX = size.width + bottomObstacle.size.width/2
+        let startX = size.width/2
+        
+        let bottomObstacleMin = (playableStart - bottomObstacle.size.height/2) + playableHeight * bottomObstacleMinFraction
+        let bottomObstacleMax = (playableStart - bottomObstacle.size.height/2) + playableHeight * bottomObstacleMaxFraction
+        
+        // Using GameplayKit's Randomization
+        
+        let randomSource = GKARC4RandomSource()
+        let randomDistribution = GKRandomDistribution(randomSource: randomSource,
+            lowestValue: Int(round(bottomObstacleMin)),
+            highestValue: Int(round(bottomObstacleMax)))
+        let randomValue = randomDistribution.nextInt()
+        
+        bottomObstacle.position = CGPointMake(startX, CGFloat(randomValue))
+        worldNode.addChild(bottomObstacle)
+        
+        // Top Obstacle
+        
+        let topObstacle = createObstacle()
+        topObstacle.zRotation = CGFloat(180).degreesToRadians()
+        topObstacle.position = CGPoint(x: startX, y: bottomObstacle.position.y + bottomObstacle.size.height/2 + topObstacle.size.height/2 + player.spriteComponent.node.size.height * gapMultiplier)
+        worldNode.addChild(topObstacle)
+        
+    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
