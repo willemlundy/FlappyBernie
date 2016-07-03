@@ -15,7 +15,7 @@ enum Layer:CGFloat {
 
 class GameScene: SKScene {
     
-    // Testing Git: remove this line
+    // Testing Git: remove this line next
     
     let worldNode = SKNode()
     
