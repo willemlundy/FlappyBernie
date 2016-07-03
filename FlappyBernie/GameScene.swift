@@ -77,11 +77,14 @@ class GameScene: SKScene {
         playerNode.zPosition = Layer.Player.rawValue
         
         worldNode.addChild(playerNode)
+        
+        player.movementComponent.playableStart = playableStart
     }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
+        player.movementComponent.applyImpulse()
 
     }
    
@@ -96,6 +99,9 @@ class GameScene: SKScene {
         
         // Begin Updates
         updateForeground()
+        
+        // Per-Entity updates
+        player.updateWithDeltaTime(deltaTime)
     }
     
     func updateForeground() {

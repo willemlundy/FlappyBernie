@@ -38,6 +38,7 @@
 		89E918EC1D2497DA002EACA7 /* whack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 89E918D51D2497DA002EACA7 /* whack.wav */; };
 		89E919121D29C08A002EACA7 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919111D29C08A002EACA7 /* PlayerEntity.swift */; };
 		89E919141D29C138002EACA7 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919131D29C138002EACA7 /* SpriteComponent.swift */; };
+		89E919161D29C6E8002EACA7 /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919151D29C6E8002EACA7 /* MovementComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		89E918D51D2497DA002EACA7 /* whack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whack.wav; sourceTree = "<group>"; };
 		89E919111D29C08A002EACA7 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		89E919131D29C138002EACA7 /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		89E919151D29C6E8002EACA7 /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				89E919131D29C138002EACA7 /* SpriteComponent.swift */,
+				89E919151D29C6E8002EACA7 /* MovementComponent.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				89E918E21D2497DA002EACA7 /* SKTAudio.swift in Sources */,
 				89E918DA1D2497DA002EACA7 /* CGFloat+Extensions.swift in Sources */,
 				89E918E51D2497DA002EACA7 /* Vector3.swift in Sources */,
+				89E919161D29C6E8002EACA7 /* MovementComponent.swift in Sources */,
 				89AC24C81D232D7F00337B9D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
