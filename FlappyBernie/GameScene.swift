@@ -15,12 +15,16 @@ enum Layer:CGFloat {
 
 class GameScene: SKScene {
     
-    // Testing Git: remove this line next
-    
     let worldNode = SKNode()
     
     var playableStart: CGFloat = 0
     var playableHeight: CGFloat = 0
+    
+    let numberOfForegrounds = 2
+    let groundSpeed: CGFloat = 150
+    
+    var deltaTime: NSTimeInterval = 0
+    var lastUpdateTimeInterval: NSTimeInterval = 0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -49,13 +53,16 @@ class GameScene: SKScene {
     
     func setupForeground() {
         
-        let foreground = SKSpriteNode(imageNamed: "Ground")
-        foreground.anchorPoint = CGPoint(x: 0.0, y: 1.0)
-        foreground.position = CGPoint(x: 0, y: playableStart)
-        
-        foreground.zPosition = Layer.Foreground.rawValue
-        
-        worldNode.addChild(foreground)
+        for i in 0..<numberOfForegrounds {
+            let foreground = SKSpriteNode(imageNamed: "Ground")
+            foreground.anchorPoint = CGPoint(x: 0.0, y: 1.0)
+            foreground.position = CGPoint(x: CGFloat(i) * size.width, y: playableStart)
+            
+            foreground.zPosition = Layer.Foreground.rawValue
+            foreground.name = "foreground"
+            
+            worldNode.addChild(foreground)
+        }
         
     }
     
@@ -67,5 +74,30 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        if lastUpdateTimeInterval == 0 {
+            lastUpdateTimeInterval = currentTime
+        }
+        
+        deltaTime = currentTime - lastUpdateTimeInterval
+        lastUpdateTimeInterval = currentTime
+        
+        // Begin Updates
+        updateForeground()
+    }
+    
+    func updateForeground() {
+        worldNode.enumerateChildNodesWithName("foreground",
+            usingBlock: { node, stop in
+                if let foreground = node as? SKSpriteNode {
+                    
+                    let moveAmount = CGPoint(x: -self.groundSpeed * CGFloat(self.deltaTime), y: 0)
+                    foreground.position += moveAmount
+                    
+                    if foreground.position.x < -foreground.size.width {
+                        foreground.position += CGPoint(x: foreground.size.width * CGFloat(self.numberOfForegrounds), y: 0)
+                    }
+                }
+        
+        })
     }
 }
