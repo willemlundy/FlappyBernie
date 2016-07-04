@@ -36,6 +36,9 @@ class GameScene: SKScene {
     
     let gapMultiplier: CGFloat = 3.5
     
+    let firstSpawnDelay: NSTimeInterval = 1.75
+    let everySpawnDelay: NSTimeInterval = 1.5
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
@@ -44,7 +47,7 @@ class GameScene: SKScene {
         setupForeground()
         setupPlayer()
         
-        spawnObstacle()
+        startSpawning()
 
     }
     
@@ -88,6 +91,20 @@ class GameScene: SKScene {
         worldNode.addChild(playerNode)
         
         player.movementComponent.playableStart = playableStart
+    }
+    
+    func startSpawning() {
+        
+        let firstDelay = SKAction.waitForDuration(firstSpawnDelay)
+        let spawn = SKAction.runBlock(spawnObstacle)
+        let everyDelay = SKAction.waitForDuration(everySpawnDelay)
+        
+        let spawnSequence = SKAction.sequence([spawn, everyDelay])
+        let foreverSpawn = SKAction.repeatActionForever(spawnSequence)
+        let overallSequence = SKAction.sequence([firstDelay, foreverSpawn])
+        
+        runAction(overallSequence)
+        
     }
     
     func createObstacle() -> SKSpriteNode {
