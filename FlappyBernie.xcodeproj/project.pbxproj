@@ -40,6 +40,7 @@
 		89E919141D29C138002EACA7 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919131D29C138002EACA7 /* SpriteComponent.swift */; };
 		89E919161D29C6E8002EACA7 /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919151D29C6E8002EACA7 /* MovementComponent.swift */; };
 		89E919181D29D107002EACA7 /* ObstacleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919171D29D107002EACA7 /* ObstacleEntity.swift */; };
+		89E9191A1D29E707002EACA7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 89E919191D29E707002EACA7 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		89E919131D29C138002EACA7 /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		89E919151D29C6E8002EACA7 /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
 		89E919171D29D107002EACA7 /* ObstacleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleEntity.swift; sourceTree = "<group>"; };
+		89E919191D29E707002EACA7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		89E918B91D2497DA002EACA7 /* BernieResources */ = {
 			isa = PBXGroup;
 			children = (
+				89E919191D29E707002EACA7 /* README.md */,
 				89E918BA1D2497DA002EACA7 /* Art */,
 				89E918BD1D2497DA002EACA7 /* Icons */,
 				89E918C01D2497DA002EACA7 /* SKTUtils */,
@@ -297,6 +300,7 @@
 			files = (
 				89AC24CC1D232D7F00337B9D /* GameScene.swift in Sources */,
 				89E918DB1D2497DA002EACA7 /* CGPoint+Extensions.swift in Sources */,
+				89E9191A1D29E707002EACA7 /* README.md in Sources */,
 				89E918E41D2497DA002EACA7 /* SKTTimingFunctions.swift in Sources */,
 				89E918E31D2497DA002EACA7 /* SKTEffects.swift in Sources */,
 				89E918DF1D2497DA002EACA7 /* SKAction+SpecialEffects.swift in Sources */,
