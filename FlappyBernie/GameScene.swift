@@ -16,7 +16,18 @@ enum Layer:CGFloat {
     case Player
 }
 
-class GameScene: SKScene {
+struct PhysicsCategory {
+    
+    static let None:     UInt32 =   0      // 0
+    static let Player:   UInt32 =   0b1    // 1
+    static let Obstacle: UInt32 =   0b10   // 2
+    static let Ground:   UInt32 =   0b100  // 4
+    
+}
+
+
+
+class GameScene: SKScene , SKPhysicsContactDelegate {
     
     let worldNode = SKNode()
     
@@ -40,7 +51,9 @@ class GameScene: SKScene {
     let everySpawnDelay: NSTimeInterval = 1.5
     
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
+        
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        physicsWorld.contactDelegate = self
         
         addChild(worldNode)
         setupBackground()
@@ -64,6 +77,15 @@ class GameScene: SKScene {
         
         playableStart = size.height - background.size.height
         playableHeight = background.size.height
+        
+        let lowerLeft = CGPoint(x: 0, y: playableStart)
+        let lowerRight = CGPoint(x: size.width, y: playableStart)
+        
+        // Add Physics
+        physicsBody = SKPhysicsBody(edgeFromPoint: lowerLeft, toPoint: lowerRight)
+        physicsBody?.categoryBitMask = PhysicsCategory.Ground
+        physicsBody?.collisionBitMask = 0
+        physicsBody?.contactTestBitMask = PhysicsCategory.Player
         
     }
     
@@ -155,11 +177,29 @@ class GameScene: SKScene {
         
     }
     
+    // Mark: Game Play
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
         player.movementComponent.applyImpulse()
 
     }
+    
+    // Mark: Physics
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        let other = contact.bodyA.categoryBitMask == PhysicsCategory.Player ?
+        contact.bodyB : contact.bodyA
+        
+        if other.categoryBitMask == PhysicsCategory.Ground {
+            print("hit ground")
+        }
+        if other.categoryBitMask == PhysicsCategory.Obstacle {
+            print("hit obstacle")
+        }
+    }
+    
+    // Mark: Updates
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
