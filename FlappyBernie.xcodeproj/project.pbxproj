@@ -41,6 +41,9 @@
 		89E919161D29C6E8002EACA7 /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919151D29C6E8002EACA7 /* MovementComponent.swift */; };
 		89E919181D29D107002EACA7 /* ObstacleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919171D29D107002EACA7 /* ObstacleEntity.swift */; };
 		89E9191A1D29E707002EACA7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 89E919191D29E707002EACA7 /* README.md */; };
+		89E9191D1D2C2451002EACA7 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E9191C1D2C2451002EACA7 /* PlayingState.swift */; };
+		89E9191F1D2C2467002EACA7 /* FallingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E9191E1D2C2467002EACA7 /* FallingState.swift */; };
+		89E919211D2C247E002EACA7 /* GameOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E919201D2C247E002EACA7 /* GameOverState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +83,9 @@
 		89E919151D29C6E8002EACA7 /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
 		89E919171D29D107002EACA7 /* ObstacleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleEntity.swift; sourceTree = "<group>"; };
 		89E919191D29E707002EACA7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		89E9191C1D2C2451002EACA7 /* PlayingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
+		89E9191E1D2C2467002EACA7 /* FallingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FallingState.swift; sourceTree = "<group>"; };
+		89E919201D2C247E002EACA7 /* GameOverState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 		89AC24C61D232D7F00337B9D /* FlappyBernie */ = {
 			isa = PBXGroup;
 			children = (
+				89E9191B1D2C1F7D002EACA7 /* Game States */,
 				89E919101D29BF90002EACA7 /* Entities */,
 				89E9190F1D29BF85002EACA7 /* Components */,
 				89E918B91D2497DA002EACA7 /* BernieResources */,
@@ -215,6 +222,16 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
+		89E9191B1D2C1F7D002EACA7 /* Game States */ = {
+			isa = PBXGroup;
+			children = (
+				89E9191C1D2C2451002EACA7 /* PlayingState.swift */,
+				89E9191E1D2C2467002EACA7 /* FallingState.swift */,
+				89E919201D2C247E002EACA7 /* GameOverState.swift */,
+			);
+			name = "Game States";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -305,9 +322,11 @@
 				89E918E31D2497DA002EACA7 /* SKTEffects.swift in Sources */,
 				89E918DF1D2497DA002EACA7 /* SKAction+SpecialEffects.swift in Sources */,
 				89E918DC1D2497DA002EACA7 /* CGVector+Extensions.swift in Sources */,
+				89E9191D1D2C2451002EACA7 /* PlayingState.swift in Sources */,
 				89E918DE1D2497DA002EACA7 /* SKAction+Extensions.swift in Sources */,
 				89E919121D29C08A002EACA7 /* PlayerEntity.swift in Sources */,
 				89E918E01D2497DA002EACA7 /* SKColor+Extensions.swift in Sources */,
+				89E9191F1D2C2467002EACA7 /* FallingState.swift in Sources */,
 				89E919181D29D107002EACA7 /* ObstacleEntity.swift in Sources */,
 				89E919141D29C138002EACA7 /* SpriteComponent.swift in Sources */,
 				89AC24CE1D232D7F00337B9D /* GameViewController.swift in Sources */,
@@ -318,6 +337,7 @@
 				89E918E51D2497DA002EACA7 /* Vector3.swift in Sources */,
 				89E919161D29C6E8002EACA7 /* MovementComponent.swift in Sources */,
 				89AC24C81D232D7F00337B9D /* AppDelegate.swift in Sources */,
+				89E919211D2C247E002EACA7 /* GameOverState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

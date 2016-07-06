@@ -25,8 +25,6 @@ struct PhysicsCategory {
     
 }
 
-
-
 class GameScene: SKScene , SKPhysicsContactDelegate {
     
     let worldNode = SKNode()
@@ -50,6 +48,14 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
     let firstSpawnDelay: NSTimeInterval = 1.75
     let everySpawnDelay: NSTimeInterval = 1.5
     
+    lazy var gameState: GKStateMachine = GKStateMachine(states: [
+        PlayingState(scene: self),
+        FallingState(scene: self),
+        GameOverState(scene: self)
+        ])
+    
+    
+    
     override func didMoveToView(view: SKView) {
         
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -60,7 +66,9 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         setupForeground()
         setupPlayer()
         
-        startSpawning()
+        // startSpawning()
+        
+        gameState.enterState(PlayingState)
 
     }
     
@@ -211,7 +219,9 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         lastUpdateTimeInterval = currentTime
         
         // Begin Updates
-        updateForeground()
+        // updateForeground()
+        
+        gameState.updateWithDeltaTime(deltaTime)
         
         // Per-Entity updates
         player.updateWithDeltaTime(deltaTime)
