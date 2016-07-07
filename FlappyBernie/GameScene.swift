@@ -14,6 +14,7 @@ enum Layer:CGFloat {
     case Obstacle
     case Foreground
     case Player
+    case UI
 }
 
 struct PhysicsCategory {
@@ -54,6 +55,12 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         GameOverState(scene: self)
         ])
     
+    var scoreLabel: SKLabelNode!
+    var score = 0
+    
+    var fontName = "AmericanTypewriter-Bold"
+    var margin: CGFloat = 20.0
+    
     let popAction = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
@@ -65,8 +72,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         setupBackground()
         setupForeground()
         setupPlayer()
-        
-        // startSpawning()
+        setupScoreLabel()
         
         gameState.enterState(PlayingState)
 
@@ -122,6 +128,20 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         
         player.movementComponent.playableStart = playableStart
     }
+    
+    func setupScoreLabel() {
+        scoreLabel = SKLabelNode(fontNamed: fontName)
+        scoreLabel.fontColor = SKColor(red: 101.0/255.0, green: 71.0/255.0, blue:73.0/255.0, alpha: 1.0)
+        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - margin)
+        scoreLabel.verticalAlignmentMode = .Top
+        scoreLabel.zPosition = Layer.UI.rawValue
+        
+        scoreLabel.text = "\(score)"
+        
+        worldNode.addChild(scoreLabel)
+    }
+    
+    
     
     // MARK: Obstacle Methods
     
