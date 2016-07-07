@@ -62,6 +62,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
     var margin: CGFloat = 20.0
     
     let popAction = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
+    let coinAction = SKAction.playSoundFileNamed("coin.wav", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         
@@ -174,6 +175,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         obstacleNode.zPosition = Layer.Obstacle.rawValue
         
         obstacleNode.name = "obstacle"
+        obstacleNode.userData = NSMutableDictionary()
         
         return obstacle.spriteComponent.node
     }
@@ -283,6 +285,28 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         // Per-Entity updates
         player.updateWithDeltaTime(deltaTime)
     }
+    
+    func updateScore() {
+        
+        worldNode.enumerateChildNodesWithName("obstacle", usingBlock: {node, stop in
+            if let obstacle = node as? SKSpriteNode {
+                if let passed = obstacle.userData?["Passed"] as? NSNumber {
+                    if passed.boolValue {
+                        return
+                    }
+                }
+                if self.player.spriteComponent.node.position.x > obstacle.position.x + obstacle.size.width/2 {
+                    self.score++
+                    self.scoreLabel.text = "\(self.score/2)"
+                    
+                    obstacle.userData?["Passed"] = NSNumber(bool: true)
+                    self.runAction(self.coinAction)
+                }
+            }
+        })
+    }
+    
+    
     
     func updateForeground() {
         worldNode.enumerateChildNodesWithName("foreground",
