@@ -12,6 +12,8 @@ import GameplayKit
 class GameOverState: GKState {
     unowned let scene: GameScene
     
+    let hitGroundAction = SKAction.playSoundFileNamed("hitGround.wav", waitForCompletion: false)
+    
     
     init(scene: SKScene) {
         self.scene = scene as! GameScene
@@ -19,7 +21,8 @@ class GameOverState: GKState {
     }
     
     override func didEnterWithPreviousState(previousState: GKState?) {
-        
+        scene.runAction(hitGroundAction)
+        scene.stopSpawning()
     }
     
     override func isValidNextState(stateClass: AnyClass) -> Bool {

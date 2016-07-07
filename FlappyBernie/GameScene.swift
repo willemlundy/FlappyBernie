@@ -54,7 +54,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         GameOverState(scene: self)
         ])
     
-    
+    let popAction = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         
@@ -123,6 +123,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         player.movementComponent.playableStart = playableStart
     }
     
+    // MARK: Obstacle Methods
+    
     func startSpawning() {
         
         let firstDelay = SKAction.waitForDuration(firstSpawnDelay)
@@ -133,7 +135,16 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         let foreverSpawn = SKAction.repeatActionForever(spawnSequence)
         let overallSequence = SKAction.sequence([firstDelay, foreverSpawn])
         
-        runAction(overallSequence)
+        // runAction(overallSequence)
+        runAction(overallSequence, withKey: "spawn")
+        
+        
+    }
+    
+    func stopSpawning() {
+        removeActionForKey("spawn")
+        
+        worldNode.enumerateChildNodesWithName("obstacle", usingBlock: {node, stop in node.removeAllActions()})
         
     }
     
@@ -141,6 +152,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         let obstacle = Obstacle(imageName: "Cactus")
         let obstacleNode = obstacle.spriteComponent.node
         obstacleNode.zPosition = Layer.Obstacle.rawValue
+        
+        obstacleNode.name = "obstacle"
         
         return obstacle.spriteComponent.node
     }
@@ -189,8 +202,27 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
-        player.movementComponent.applyImpulse()
+        
+        
+        
+        if gameState.currentState is PlayingState {
+            player.movementComponent.applyImpulse()
+        } else if gameState.currentState is GameOverState {
+            restartGame()
+        }
+        
+        
 
+    }
+    
+    func restartGame() {
+        
+        runAction(popAction)
+        
+        let newScene = GameScene(size: size)
+        let transition = SKTransition.fadeWithColor(SKColor.blackColor(), duration: 0.02)
+        view?.presentScene(newScene, transition: transition)
+        
     }
     
     // Mark: Physics
@@ -200,10 +232,15 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         contact.bodyB : contact.bodyA
         
         if other.categoryBitMask == PhysicsCategory.Ground {
-            print("hit ground")
+            
+            // print("hit ground")
+            gameState.enterState(GameOverState)
+            
+            
         }
         if other.categoryBitMask == PhysicsCategory.Obstacle {
-            print("hit obstacle")
+            // print("hit obstacle")
+            gameState.enterState(FallingState)
         }
     }
     
